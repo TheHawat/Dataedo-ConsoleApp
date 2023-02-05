@@ -67,10 +67,9 @@
             return line;
         }
 
-        public void ImportData(string fileToImport) {
-            var StreamReader = new StreamReader(fileToImport);
-            while (!StreamReader.EndOfStream) {
-                var line = StreamReader.ReadLine();
+        public void ImportData(StreamReader fileToImport) {
+            while (!fileToImport.EndOfStream) {
+                var line = fileToImport.ReadLine();
                 if (!ValidateLine(line)) continue;
                 _importedObjects.Add(new ImportedObject(line));
             }
