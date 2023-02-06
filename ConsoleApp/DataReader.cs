@@ -8,7 +8,7 @@ namespace ConsoleApp
     public class DataReader
     {
         private List<ImportedObject> _importedObjects;
-        internal List<ImportedObject> ImportedObjects { get { return _importedObjects; } }
+        public List<ImportedObject> ImportedObjects => _importedObjects;
         public DataReader() {
             _importedObjects = new List<ImportedObject>();
         }

@@ -1,6 +1,6 @@
 ﻿namespace ConsoleApp
 {
-    internal class ImportedObject : ImportedObjectBaseClass
+    public class ImportedObject : ImportedObjectBaseClass
     {
         public string Schema;
         public string ParentName;
@@ -19,7 +19,7 @@
             IsNullable = values[6];
         }
     }
-    abstract class ImportedObjectBaseClass
+    abstract public class ImportedObjectBaseClass
     {
         public string Name;
         public string Type;

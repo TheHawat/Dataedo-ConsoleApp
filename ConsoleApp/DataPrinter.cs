@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ConsoleApp
 {
-    internal class DataPrinter
+    public class DataPrinter
     {
         private readonly List<ImportedObject> _importedObjects;
         public DataPrinter(DataReader input) {
