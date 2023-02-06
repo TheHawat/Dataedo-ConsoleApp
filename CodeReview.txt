@@ -1,0 +1,20 @@
+Po pierwsze do poprawy błędy które uniemożliwiają kompilację i poprawne działanie programu:
+1)	Usuń literówkę w Program:15 dataa -> data.
+2)	Popraw warunki for w DataReader:27, niepoprawny zakres.
+3)	Dodaj mechanizm sprawdzania poprawnosci dodawanej linijki w DataReader:39, w tej chwili w żaden sposób nie waliduje poprawności danych. Sugeruję dodanie osobnej metody np. ValidateLine.
+4)	Rozwiąż problem z rozmiarem znaków Type i ParentType i nie wywołuj metody ToUpper() w pętlach. Być może dopisz w DataReader:49 .ToUpper()? W tej chwili porównanie działa niepoprawnie i nie liczy ilości tabel dla danej bazy danych.
+5)	Wykasuj linijki DataReader:106-110, w tej chwili nadpisują dziedziczone pole.
+6)	Zainicjalizuj zmienną NumerOfChildren wartościa 0.
+
+Powyższe uwagi muszą być poprawione, ponadto warto by było:
+1)	Rozbić metody na mniejsze, w szczególności DataReader:14, ImportAndPrintData. Każda metoda powinna robić jedną rzecz. W dalszej kolejności warto rozbić klasę np. DataReader i DataPrinter.
+2)	Nie przekazywać pliku tekstowego jako string. Aby klasa była hermetczyna warto stworzyć mechanizm który przyjmuje odpowiedni plik. Wczytywaniem pliku na podstawie stringu powinny się zajmować inne funkcje.
+3)	Warto poprawić konwencję na spójną i jednolitą. Końce linii i nazwy zmiennych powinny być spójne w ramach jakiejś konwencji.
+4)	 Zmienić podawanie zmiennej bool jako argument metody. Metoda powinna robić konkretną rzecz, warunek logiczny powinien być poza nią.
+5)	Usunąć niepotrzebne using na górze plików. W nowszych wersjach C# warto dodać plik do global using, ułatwia to czytanie kodu rozbitego na wiele plików.
+6)	Zastanowić się nad zmianą typu danych ImportedObject na struct. Czy jest powód dla którego to jest klasa?
+7)	Dodać konstruktory do klas, które odpowiednio wczytują wymagane dane.
+8)	Poprawić powtarzający się kod poprzez użycie dodatkowych metod.
+9)	Zastanowić się nad wydajnością 3N drukowania danych, może warto posortować dane (nawet na etapie wczytywania), zależy od ich ilości i dalszych implementacji.
+10)	Starać się nie pisać komentarzy, poprawnie nazwane metody eliminują potrzebę na komentarze.
+11)	Zastanowić się nad napisaniem kilku testów, nawet zanim zabierzesz się nad tworzeniem mniejszych metod.
