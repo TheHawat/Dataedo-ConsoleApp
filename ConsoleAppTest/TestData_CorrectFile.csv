@@ -1,0 +1,7 @@
+database;AdventureWorks2016_EXT;;;;;
+Table;SpecialOfferProduct;Sales;AdventureWorks2016_EXT;Database; ;
+Table;ProductModel;Production;AdventureWorks2016_EXT;Database;NULL;
+Table;AddressType;Person;AdventureWorks2016_EXT;Database;NULL;
+column;ModifiedDate;Person;AddressType;TABLE;datetime;0
+column;Name;Person;AddressType;TABLE;Name: nvarchar;0
+column;rowguid;Person;AddressType;TABLE;uniqueidentifier;0

@@ -1,6 +1,6 @@
 ﻿namespace ConsoleApp
 {
-    public class ImportedObject : ImportedObjectBaseClass
+    public class DatabaseSchemaEntry : ImportedObjectBaseClass
     {
         public string Schema;
         public string ParentName;
@@ -8,7 +8,7 @@
         public string DataType;
         public string IsNullable;
         public double NumberOfChildren = 0;
-        public ImportedObject(string line) {
+        public DatabaseSchemaEntry(string line) {
             var values = line.Split(';');
             Type = values[0];
             Name = values[1];

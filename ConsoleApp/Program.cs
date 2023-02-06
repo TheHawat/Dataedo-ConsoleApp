@@ -10,11 +10,11 @@ namespace ConsoleApp
             Console.ReadLine();
         }
         static void ImportAndPrintData() {
-            var Reader = new DataReader();
+            var Reader = new SchemaReader();
             StreamReader FileToImport = new StreamReader("data.csv");
-            Reader.ImportData(FileToImport);
-            var Printer = new DataPrinter(Reader);
-            Printer.PrintData();
+            Reader.ImportSchema(FileToImport);
+            var Printer = new SchemaPrinter(Reader);
+            Printer.PrintDatabaseSchema();
         }
     }
 }

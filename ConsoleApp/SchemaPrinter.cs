@@ -3,30 +3,31 @@ using System.Collections.Generic;
 
 namespace ConsoleApp
 {
-    public class DataPrinter
+    public class SchemaPrinter
     {
-        private readonly List<ImportedObject> _importedObjects;
-        public DataPrinter(DataReader input) {
+        private readonly List<DatabaseSchemaEntry> _importedObjects;
+        public SchemaPrinter(SchemaReader input) {
             _importedObjects = input.ImportedObjects;
         }
-        public void PrintData() {
+
+        public void PrintDatabaseSchema() {
             foreach (var database in _importedObjects) {
                 if (database.Type != "DATABASE") continue;
                 Console.WriteLine($"Database '{database.Name}' ({database.NumberOfChildren} tables)");
-                PrintTables(database.Type, database.Name);
+                PrintChildTablesColumns(database.Type, database.Name);
             }
         }
 
-        private void PrintTables(string type, string name) {
+        private void PrintChildTablesColumns(string type, string name) {
             foreach (var table in _importedObjects) {
                 if (table.ParentType != type) continue;
                 if (table.ParentName != name) continue;
                 Console.WriteLine($"\tTable '{table.Schema}.{table.Name}' ({table.NumberOfChildren} columns)");
-                PrintColumns(table.Type, table.Name);
+                PrintChildColumns(table.Type, table.Name);
             }
         }
 
-        private void PrintColumns(string type, string name) {
+        private void PrintChildColumns(string type, string name) {
             foreach (var column in _importedObjects) {
                 if (column.ParentType != type) continue;
                 if (column.ParentName != name) continue;
