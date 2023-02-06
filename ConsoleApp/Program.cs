@@ -1,8 +1,8 @@
-﻿namespace ConsoleApp
-{
-    using System;
-    using System.IO;
+﻿using System;
+using System.IO;
 
+namespace ConsoleApp
+{
     internal class Program
     {
         static void Main() {
@@ -10,10 +10,11 @@
             Console.ReadLine();
         }
         static void ImportAndPrintData() {
-            var reader = new DataReader();
+            var Reader = new DataReader();
             StreamReader FileToImport = new StreamReader("data.csv");
-            reader.ImportData(FileToImport);
-            reader.PrintData();
+            Reader.ImportData(FileToImport);
+            var Printer = new DataPrinter(Reader);
+            Printer.PrintData();
         }
     }
 }
