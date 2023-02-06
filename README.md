@@ -1,4 +1,4 @@
-Repozytorium jest rozwiązaniem poniższego zadania:
+Repozytorium jest rozwiązaniem poniższego zadania, zapraszam do obejrzenia testów w dodatkowym projekcie ConsoleAppTest:
 
 Kolega poprosił Cię o zrobienie code-review. Na co zwrócisz uwagę przeglądając poniższy
 kod?
