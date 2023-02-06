@@ -15,6 +15,6 @@ Powyższe uwagi muszą być poprawione, ponadto warto by było:
 6)	Zastanowić się nad zmianą typu danych ImportedObject na struct. Czy jest powód dla którego to jest klasa?
 7)	Dodać konstruktory do klas, które odpowiednio wczytują wymagane dane.
 8)	Poprawić powtarzający się kod poprzez użycie dodatkowych metod.
-9)	Zastanowić się nad wydajnością 3N drukowania danych, może warto posortować dane (nawet na etapie wczytywania), zależy od ich ilości i dalszych implementacji.
+9)	Zastanowić się nad wydajnością N^3 drukowania danych, może warto posortować dane (nawet na etapie wczytywania), zależy od ich ilości i dalszych implementacji.
 10)	Starać się nie pisać komentarzy, poprawnie nazwane metody eliminują potrzebę na komentarze.
 11)	Zastanowić się nad napisaniem kilku testów, nawet zanim zabierzesz się nad tworzeniem mniejszych metod.
