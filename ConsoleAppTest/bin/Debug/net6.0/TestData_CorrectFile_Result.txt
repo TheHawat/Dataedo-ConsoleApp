@@ -3,5 +3,5 @@ Database 'AdventureWorks2016_EXT' (3 tables)
 	Table 'Production.ProductModel' (0 columns)
 	Table 'Person.AddressType' (3 columns)
 		Column 'ModifiedDate' with datetime data type with no nulls
-		Column 'Name' with Name: nvarchar data type with no nulls
+		Column 'Name' with Name:nvarchar data type with no nulls
 		Column 'rowguid' with uniqueidentifier data type with no nulls

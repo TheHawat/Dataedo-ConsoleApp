@@ -1,27 +1,66 @@
-﻿namespace ConsoleApp
+﻿using System;
+using System.Collections.Generic;
+
+namespace ConsoleApp
 {
-    public class DatabaseSchemaEntry : ImportedObjectBaseClass
+    public class DatabaseSchema : ImportedObjectBaseClass
     {
-        public string Schema;
-        public string ParentName;
-        public string ParentType;
-        public string DataType;
-        public string IsNullable;
-        public double NumberOfChildren = 0;
-        public DatabaseSchemaEntry(string line) {
-            var values = line.Split(';');
-            Type = values[0];
-            Name = values[1];
-            Schema = values[2];
-            ParentName = values[3];
-            ParentType = values[4];
-            DataType = values[5];
-            IsNullable = values[6];
+        private List<Table> _entries;
+        public DatabaseSchema(string name) {
+            Name = name;
+            _entries = new List<Table>();
+        }
+
+        public void AddTable(Table newTable) {
+            _entries.Add(newTable);
+        }
+
+        public override void Print() {
+            Console.WriteLine($"Database '{Name}' ({_entries.Count} tables)");
+            _entries.ForEach(x => x.Print());
         }
     }
+
+    public class Table : ImportedObjectBaseClass
+    {
+        private string _schema;
+        private List<Column> _entries;
+
+        public Table(string name, string schema) {
+            Name = name;
+            _schema = schema;
+            _entries= new List<Column>();
+        }
+
+        public void AddColumn(Column newColumn) {
+            _entries.Add(newColumn);
+        }
+
+        public override void Print() {
+            Console.WriteLine($"\tTable '{_schema}.{Name}' ({_entries.Count} columns)");
+            _entries.ForEach(x => x.Print());
+        }
+    }
+
+    public class Column : ImportedObjectBaseClass
+    {
+        private bool _isNullable;
+        private string _dataType;
+
+        public Column(string name, string dataType, string isNullable) {
+            _isNullable = isNullable == "1" ? true : false;
+            _dataType = dataType;
+            Name = name;
+        }
+
+        public override void Print() {
+            Console.WriteLine($"\t\tColumn '{Name}' with {_dataType} data type {(_isNullable ? "accepts nulls" : "with no nulls")}");
+        }
+    }
+
     abstract public class ImportedObjectBaseClass
     {
         public string Name;
-        public string Type;
+        abstract public void Print();
     }
 }

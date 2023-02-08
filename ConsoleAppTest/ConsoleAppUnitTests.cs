@@ -10,6 +10,7 @@ namespace ConsoleApp
             bool Result = TestSchemaReader.ValidateLine(TestString);
             Assert.IsTrue(!Result);
         }
+
         [TestMethod]
         public void Validator_NotEnoughFields() {
             SchemaReader TestSchemaReader = new SchemaReader();
@@ -17,6 +18,7 @@ namespace ConsoleApp
             bool Result = TestSchemaReader.ValidateLine(TestString);
             Assert.IsTrue(!Result);
         }
+
         [TestMethod]
         public void Validator_ValidLine() {
             SchemaReader TestSchemaReader = new SchemaReader();
@@ -24,6 +26,7 @@ namespace ConsoleApp
             bool Result = TestSchemaReader.ValidateLine(TestString);
             Assert.IsTrue(Result);
         }
+
         [TestMethod]
         public void CleanOneLine_CorrectData() {
             SchemaReader TestSchemaReader = new SchemaReader();
@@ -33,39 +36,29 @@ namespace ConsoleApp
             Console.WriteLine(TestString);
             Assert.IsTrue(TestString == ExpectedResult);
         }
+
         [TestMethod]
         public void WholeProcess() {
             StreamReader FileToImport = new StreamReader("TestData_CorrectFile.csv");
             var Reader = new SchemaReader();
             Reader.ImportSchema(FileToImport);
-            var Printer = new SchemaPrinter(Reader);
             var StringWriter = new StringWriter();
             Console.SetOut(StringWriter);
-            Printer.PrintDatabaseSchema();
+            Reader.Print();
             string ExpectedResult = File.ReadAllText("TestData_CorrectFile_Result.txt");
-            Assert.AreEqual(ExpectedResult, StringWriter.ToString());
+            Assert.AreEqual(ExpectedResult, StringWriter.ToString().TrimEnd());
         }
+
         [TestMethod]
         public void WholeProcessWithBadData() {
             StreamReader FileToImport = new StreamReader("TestData_BadFile.csv");
             var Reader = new SchemaReader();
             Reader.ImportSchema(FileToImport);
-            var Printer = new SchemaPrinter(Reader);
             var StringWriter = new StringWriter();
             Console.SetOut(StringWriter);
-            Printer.PrintDatabaseSchema();
+            Reader.Print();
             string ExpectedResult = File.ReadAllText("TestData_CorrectFile_Result.txt");
-            Assert.AreEqual(ExpectedResult, StringWriter.ToString());
-        }
-        [TestMethod]
-        public void ImportData() {
-            string filePath =  "TestData_BadFile.csv";
-            StreamReader FileToImport = new StreamReader(filePath);
-            var Reader = new SchemaReader();
-            Reader.ImportSchema(FileToImport);
-            Assert.AreEqual(Reader.ImportedObjects[0].NumberOfChildren, 3);
-            Assert.AreEqual(Reader.ImportedObjects[1].Type, "TABLE");
-            Assert.AreEqual(Reader.ImportedObjects[5].IsNullable, "0");
+            Assert.AreEqual(ExpectedResult, StringWriter.ToString().TrimEnd());
         }
     }
 }
